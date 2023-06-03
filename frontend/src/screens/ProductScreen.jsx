@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import products from '../products';
 import Rating from '../components/Rating';
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { FaQuoteRight } from 'react-icons/fa';
 
 const ProductScreen = () => {
   const { id: productId} = useParams();
@@ -12,7 +14,8 @@ const ProductScreen = () => {
   return (
     <>
     <Link className="btn btn-light my-3" to='/'>
-      Go Back
+      <FiChevronLeft />
+      <FiChevronLeft />
     </Link>
     <Row>
       <Col md={5}>
@@ -29,11 +32,14 @@ const ProductScreen = () => {
           <ListGroup.Item>
             price:  ${product.price}
           </ListGroup.Item>
-
-
         </ListGroup>
       </Col>
-      <Col md={5}>
+      <Col md={3}>
+        <Card>
+        <ListGroup variant='flush'>
+          </ListGroup>
+
+        </Card>
       </Col>
     </Row>
 
