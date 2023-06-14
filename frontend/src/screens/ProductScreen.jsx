@@ -6,12 +6,12 @@ import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-b
 import Rating from '../components/Rating';
 import { FiChevronLeft } from 'react-icons/fi';
 // import { useEffect, useState } from 'react';
-import { useGetProductsQuery } from '../slices/productsApiSLice';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
 
 
 const ProductScreen = () => {
   // const [product, setProduct]  = useState({});
-  // const { id: productId} = useParams();
+  const { id: productId} = useParams();
 
   // useEffect(()=>{
   //   const fetchProducts = async() => {
@@ -22,8 +22,8 @@ const ProductScreen = () => {
   // },[productId]);
 
 
-  const{ data: products, isLoading, error } = useGetProductsQuery();
-  const product = products.find((p) => p._id === productId);
+  const{ data: product, isLoading, error } = useGetProductDetailsQuery(productId);
+  // const product = products.find((p) => p._id === productId);
 
 
   return (
@@ -32,6 +32,11 @@ const ProductScreen = () => {
       <FiChevronLeft />
       <FiChevronLeft />
     </Link>
+    {isLoading ? (
+      <h2>Loading...</h2>
+      ) : error ? (<div>{ error?.data.message || error.error}</div>) :
+
+      (<>
     <Row>
       <Col md={5}>
         <Image src={product.image} alt={product.name} fluid/>
@@ -86,16 +91,10 @@ const ProductScreen = () => {
             </Button>
           </ListGroup.Item>
           </ListGroup>
-
-
-
-
-
-
-
         </Card>
       </Col>
     </Row>
+    </>)}
     </>
   )
 }
