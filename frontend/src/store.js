@@ -1,2 +1,5 @@
 import { configureStore} from '@reduxjs/toolkit';
-const stoe = configure()
+
+const store = configureStore({
+  reducer: {}
+})
