@@ -8,6 +8,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 // import { useEffect, useState } from 'react';
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 
 const ProductScreen = () => {
@@ -35,7 +36,7 @@ const ProductScreen = () => {
     </Link>
     {isLoading ? (
     <Loader />
-      ) : error ? (<div>{ error?.data.message || error.error}</div>) :
+      ) : error ? (<Message variant='danger'>{ error?.data.message || error.error}</Message>) :
 
       (<>
     <Row>
