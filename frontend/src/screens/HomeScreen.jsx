@@ -17,19 +17,26 @@ const HomeScreen = () => {
   //    fetchProducts();
   // },[]);
 
- const{ data: products, isLoading, isError } = useGetProductsQuery();
+ const{ data: products, isLoading, error } = useGetProductsQuery();
 
   return (
     <>
-    <h1>Latest Products</h1>
-    <Row>
-    {products.map((product)=> (
-      <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-        <Product product={product}/>
-      </Col>
-    ))}
+    {isLoading ? (
+      <h2>Loading...</h2>
+      ) : error ? (<div>{ error?.data.message || error.error}</div>) :
 
-    </Row>
+      (<>
+ <h1>Latest Products</h1>
+ <Row>
+ {products.map((product)=> (
+   <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+     <Product product={product}/>
+   </Col>
+ ))}
+
+ </Row>
+    </>)}
+
     </>
 
   )
