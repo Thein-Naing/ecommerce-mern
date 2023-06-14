@@ -7,6 +7,7 @@ import Rating from '../components/Rating';
 import { FiChevronLeft } from 'react-icons/fi';
 // import { useEffect, useState } from 'react';
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import Loader from '../components/Loader';
 
 
 const ProductScreen = () => {
@@ -33,7 +34,7 @@ const ProductScreen = () => {
       <FiChevronLeft />
     </Link>
     {isLoading ? (
-      <h2>Loading...</h2>
+    <Loader />
       ) : error ? (<div>{ error?.data.message || error.error}</div>) :
 
       (<>
