@@ -2,27 +2,28 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-bootstrap';
 // import products from '../products';
-import axios from 'axios';
+// import axios from 'axios';
 import Rating from '../components/Rating';
 import { FiChevronLeft } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+import { useGetProductsQuery } from '../slices/productsApiSLice';
 
 
 const ProductScreen = () => {
-  const [product, setProduct]  = useState({});
-  const { id: productId} = useParams();
+  // const [product, setProduct]  = useState({});
+  // const { id: productId} = useParams();
 
-  useEffect(()=>{
-    const fetchProducts = async() => {
-      const { data }= await axios.get(`/api/products/${productId}`);
-      setProduct(data);
-    };
-     fetchProducts();
-  },[productId]);
+  // useEffect(()=>{
+  //   const fetchProducts = async() => {
+  //     const { data }= await axios.get(`/api/products/${productId}`);
+  //     setProduct(data);
+  //   };
+  //    fetchProducts();
+  // },[productId]);
 
 
-
-  // const product = products.find((p) => p._id === productId);
+  const{ data: products, isLoading, error } = useGetProductsQuery();
+  const product = products.find((p) => p._id === productId);
 
 
   return (
